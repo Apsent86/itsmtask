@@ -14,19 +14,14 @@ function App() {
 
     const url = 'https://jsonplaceholder.typicode.com/posts';
 
-  //
-
     const dispatch = useDispatch();
     const mainItems = useSelector(state => state.mainItems)
     const favoriteItems = useSelector(state => state.favoriteItems)
-    const editItem = useSelector(state => state.editItem)
-
 
 
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
-   // const [mainItems, setMainItems] = useState([]);
-  //  const [favoriteItems, setFavoriteItems] = useState([]);
+
 
     useEffect(() => {
         fetch(url)

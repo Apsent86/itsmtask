@@ -5,8 +5,7 @@ export const EDIT_ITEM_TITLE = 'edit_item_title';
 export const EDIT_ITEM_BODY = 'edit_item_body';
 export const EDIT_ITEM = 'edit_item';
 
-const initialState = {mainItems: [], favoriteItems: [], editItem: {body: '1', title: '1'}};
-
+const initialState = {mainItems: [], favoriteItems: [], editItem: {body: '', title: ''}};
 
 function favoriteAdd(item, state) {
     let mainItems = state.mainItems.filter(main => item.id !== main.id);
@@ -27,8 +26,6 @@ function editItem(item, state) {
 }
 
 function editItemValue(value, field, state) {
-    console.log(value);
-
     let editItem = {...state.editItem};
 
     if ('title' === field) {
