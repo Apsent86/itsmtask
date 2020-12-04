@@ -1,13 +1,12 @@
 import {Alert, Col, Container, Row, Spinner} from "react-bootstrap";
 import React from "react";
 import CardBlock from "./CardBlock";
-import {ADD_FAVORITE} from "../redux/reducer";
+import {ADD_FAVORITE, STATUS_ERROR, STATUS_LOADING} from "../redux/reducer";
 
-function MainBlock({error, isLoaded, items}) {
-
-    if (error) {
-        return <Alert variant={'danger'}> {error} </Alert>
-    } else if (isLoaded) {
+function MainBlock({status, items}) {
+    if (STATUS_ERROR === status) {
+        return <Alert variant={'danger'}> {'error'} </Alert>
+    } else if (STATUS_LOADING === status) {
         return <Spinner animation="border" role="status"> <span className="sr-only">Loading...</span></Spinner>
     } else {
         return (

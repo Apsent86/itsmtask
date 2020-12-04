@@ -4,8 +4,14 @@ export const DELETE_FAVORITE = 'delete_favorite';
 export const EDIT_ITEM_TITLE = 'edit_item_title';
 export const EDIT_ITEM_BODY = 'edit_item_body';
 export const EDIT_ITEM = 'edit_item';
+export const LOAD_ELEMENTS_LOADING = 'load_elements_loadings';
+export const LOAD_ELEMENTS_ERROR = 'load_elements_errors';
 
-const initialState = {mainItems: [], favoriteItems: [], editItem: {body: '', title: ''}};
+export const STATUS_LOADING = 'loading';
+export const STATUS_ERROR = 'error';
+export const STATUS_SUCCESS = 'success';
+
+const initialState = {mainItems: [], favoriteItems: [], editItem: {body: '', title: ''}, status: STATUS_LOADING};
 
 function favoriteAdd(item, state) {
     let mainItems = state.mainItems.filter(main => item.id !== main.id);
@@ -49,11 +55,15 @@ function editItemValue(value, field, state) {
 }
 
 function loadItems(items, state) {
-    return {...state, mainItems: items, favoriteItems: []}
+    return {...state, mainItems: items, favoriteItems: [], status: STATUS_SUCCESS}
 }
 
 export function reducer(state = initialState, action) {
     switch (action.type) {
+        case LOAD_ELEMENTS_LOADING:
+            return {...state, status: STATUS_LOADING};
+        case LOAD_ELEMENTS_ERROR:
+            return {...state, status: STATUS_ERROR};
         case LOAD_ELEMENTS:
             return loadItems(action.items, state);
         case ADD_FAVORITE:
